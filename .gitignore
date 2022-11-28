@@ -1,0 +1,8 @@
+server-readme.txt
+samp-license.txt
+server_log.txt
+logs/warnings.log
+logs/log-core.log
+logs/errors.log
+crashinfo.txt
+*.amx

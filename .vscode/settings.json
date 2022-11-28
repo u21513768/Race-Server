@@ -1,0 +1,11 @@
+{
+    "files.encoding": "utf8",
+    "files.exclude": {
+        "gamemodes/mode.amx": true,
+        "pawno/*.pwn": true,
+        "pawno/*.cfg": true,
+        "**/*.ico": true,
+        "**/*.exe": true,
+        "**/*.dll": true,   
+    }
+}
