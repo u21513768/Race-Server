@@ -1,6 +1,6 @@
 main() {}
 
-new score;
+new score; //added comment
 new round_time;
 new map_types;
 new kills;
