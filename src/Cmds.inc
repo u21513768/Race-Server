@@ -516,3 +516,19 @@ CMD:getin(playerid, params[]) // to getin target vehicle as passenger
 
     return 1;
 }
+CMD:switch(playerid, params[])
+{
+    new vehicleid = GetPlayerVehicleID(playerid);
+
+    AddVehicleComponent(vehicleid, 1025);
+
+    if(IsPlayerInVehicle(playerid, vehicleid))
+    {
+        SendClientMessage(playerid, 0xFF66CCFF, "[SUCCESS]: Your Car Wheel Switched To Offroad Wheels!");
+    }
+    else
+    {
+        SendClientMessage(playerid, 0xCCCC00, "[ERROR]: You Must Be In A Vehicle.");
+    }
+    return 1;
+}

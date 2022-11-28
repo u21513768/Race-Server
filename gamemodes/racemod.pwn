@@ -1,6 +1,6 @@
 main() {}
 
-new score; //added comment
+new score; 
 new round_time;
 new map_types;
 new kills;
@@ -10,16 +10,6 @@ new PickupPills;
 new PickupInformation;
 new color;
 
-score = 0;
-round_time = 300;
-kills = 0;
-map_types = {
-   "Car",
-  "Air",
-  "Sea",
-  "Bikes",
-  "theme park";
-}
 
 // Inludes //
 #include <a_samp>
@@ -35,12 +25,6 @@ map_types = {
 
 // forward //
 forward SendMSG();
-
-{
-	print("\n----------------------------------");
-	print(" Blank Gamemode by your name here");
-	print("----------------------------------\n");
-}
 
 new RandomMSG[5][500] =
 {   
