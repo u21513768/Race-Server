@@ -204,7 +204,28 @@ CMD:changename(playerid, params[]) // to change your name
 
 CMD:admins(playerid) // needs to fix 
 {
-    return ShowPlayerDialog(playerid, DialogRules, DIALOG_STYLE_MSGBOX, "Online Admins", "", "Agree", ""); // Not finished yet
+    //return ShowPlayerDialog(playerid, DialogRules, DIALOG_STYLE_MSGBOX, "Online Admins", "", "Agree", ""); // Not finished yet
+    int OnlineAdmins[];
+    char AdminsTemp[] = "";
+    char Admins[] = "";
+    int counter = 0;
+    for(int i = 0; i < numPlayers; i++)
+    {
+        if(IsPlayerAdmin(i))
+        {
+            OnlineAdmins[counter] = i;
+            counter++;
+            strcat(Admins, GetPlayerName(i));
+            strcat(Admins, ", ");
+        }
+    }
+
+    for(int j = 0; j < strlen(AdminsTemp)-2; j++)
+    {
+        Admins[j] = AdminsTemp[j];
+    }
+
+    return ShowPlayerDialog(playerid, DialogRules, DIALOG_STYLE_MSGBOX, "Online Admins", Admins, "Okay", "");
 }
 
 CMD:hyd(playerid) // To Add Hydraulics in Car
