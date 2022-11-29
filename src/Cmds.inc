@@ -28,7 +28,7 @@ CMD:v(playerid, params[]) // Need To Fix Not Spawning Bikes Which Has Numeric In
     {
         for(new i = 0, sizeArray = sizeof VehicleNames; i < sizeArray; i++)
         {
-            if(strcmp(VehicleNames[i], model) == 0) //might be better?
+            if(strcmp(tolower(VehicleNames[i]), tolower(model)) == 0) //might be better?
             {
                 modelId = i + 400;
                 break;
