@@ -258,11 +258,13 @@ CMD:namecolor(playerid, params[]) // not chaning name colors
    return ShowPlayerDialog(playerid, DialogNameColor, DIALOG_STYLE_INPUT, "Change Name Color", "\n{FFFFFF}FF0000 {FF0000}YourName ~ For Red\n{FFFFFF}00FF00 {00FF00}Yourname ~ For Green\n{FFFFFF}FFFF00 {FFFF00}YourName ~ For Yellow", "OK", "Cancel");
 
 }
-CMD:s(playerid, params[]) // not working well //
+
+//need to save position to file or to db, if positions for that player exist, overwrite
+CMD:s(playerid, params[]) // not working well 
 {
     
-    new vehicleid = GetPlayerVehicleID(playerid);
-
+    //new vehicleid = GetPlayerVehicleID(playerid); //what if not in vehicle? might need to nest in if statement
+    int vehicleid;
     new 
         Float: x,
         Float: y,
@@ -270,12 +272,19 @@ CMD:s(playerid, params[]) // not working well //
 
     if(IsPlayerInAnyVehicle(playerid))
     {
-    SetVehiclePos(vehicleid, x, y, z);
-    PutPlayerInVehicle(playerid, vehicleid, 0);
-    SendClientMessage(playerid, -1, "Your Position Saved");
+        vehicleid = GetPlayerVehicleID(playerid);
+        SetVehiclePos(vehicleid, x, y, z);
+        PutPlayerInVehicle(playerid, vehicleid, 0);
+        SendClientMessage(playerid, -1, "Your Position Saved");
+    }
+    else //set player in position without vehicle
+    {
+        GetPlayerPos
     }
     return 1;
 }
+
+//need to load position from file or db
 CMD:l(playerid, params[]) // not working well //
 {
     new vehicleid = GetPlayerVehicleID(playerid);
@@ -525,7 +534,7 @@ CMD:getin(playerid, params[]) // to getin target vehicle as passenger // need to
     }
     else
     {
-        new
+        new //not being used
            Float: x,
            Float: y,
            Float: z;
