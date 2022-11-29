@@ -209,23 +209,23 @@ CMD:admins(playerid) // needs to fix
     char AdminsTemp[] = "";
     char Admins[] = "";
     int counter = 0;
-    for(int i = 0; i < numPlayers; i++)
+    for(int i = 0; i < numPlayers; i++) 
     {
-        if(IsPlayerAdmin(i))
+        if(IsPlayerAdmin(i)) //checks which players are admins
         {
-            OnlineAdmins[counter] = i;
-            counter++;
-            strcat(Admins, GetPlayerName(i));
-            strcat(Admins, ", ");
+            //OnlineAdmins[counter] = i;
+            //counter++;
+            strcat(Admins, GetPlayerName(i)); //adds the name of the admin to a list
+            strcat(Admins, ", "); //separates players by ", "
         }
     }
 
-    for(int j = 0; j < strlen(AdminsTemp)-2; j++)
+    for(int j = 0; j < strlen(AdminsTemp)-2; j++) //removes ", " from the end of the string
     {
         Admins[j] = AdminsTemp[j];
     }
 
-    return ShowPlayerDialog(playerid, DialogRules, DIALOG_STYLE_MSGBOX, "Online Admins", Admins, "Okay", "");
+    return ShowPlayerDialog(playerid, DialogRules, DIALOG_STYLE_MSGBOX, "Online Admins", Admins, "Okay", ""); //displays the list to the player
 }
 
 CMD:hyd(playerid) // To Add Hydraulics in Car
