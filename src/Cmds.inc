@@ -273,9 +273,9 @@ CMD:atk(playerid, params[]) // to back in default world
 
     return 1;
 }
-CMD:namecolor(playerid, params[]) // not chaning name colors
+CMD:namecolor(playerid, color, params[]) // not chaning name colors //could make it that the user enters a color and then it changes according to color using switch cases
 {
-
+    //use switch cases with numerical values for colour, similar to discord color bot
    return ShowPlayerDialog(playerid, DialogNameColor, DIALOG_STYLE_INPUT, "Change Name Color", "\n{FFFFFF}FF0000 {FF0000}YourName ~ For Red\n{FFFFFF}00FF00 {00FF00}Yourname ~ For Green\n{FFFFFF}FFFF00 {FFFF00}YourName ~ For Yellow", "OK", "Cancel");
 
 }
