@@ -503,16 +503,39 @@ CMD:gpw(playerid, params[]) // to give weapon to player
     
     return 1;
 }
-CMD:getin(playerid, params[]) // to getin target vehicle as passenger
+CMD:getin(playerid, params[]) // to getin target vehicle as passenger // need to implement
 {
+
     if(!IsPlayerAdmin(playerid))
-       return SendClientMessage(playerid, -1, "[ERROR]: You Are Not Logged In As Admin");
- 
-    extract params -> new targetid, vehicleid, seatid; else
-       return SendClientMessage(playerid, 0x730f1a, "[USAGE]: /getin [Player ID]");
+    return SendClientMessage(playerid, -1, "[ERROR]: You Are Not Logged In As Admin");
+    
+    extract params -> new targetid, seatid; else
+    
+    return SendClientMessage(playerid, 0x730f1a, "[USAGE]: /getin [Player ID]");
+    {
+    if(!IsPlayerConnected(targetid))
+    return SendClientMessage(playerid, -1, "[ERROR]: Player Is Not Connected");
+    }
 
-    GetPlayerVehicleSeat(targetid);
-    PutPlayerInVehicle(targetid, vehicleid, 3);
+    new vehicleid = GetPlayerVehicleID(playerid);
 
-    return 1;
+    if(!IsPlayerInAnyVehicle(playerid))
+    {
+    return SendClientMessage(playerid, -1, "[ERROR]: Player Is Not In Any Vehicle");
+    }
+    else
+    {
+        new
+           Float: x,
+           Float: y,
+           Float: z;
+
+        PutPlayerInVehicle(playerid, vehicleid, 1);
+        GetVehiclePos(vehicleid, x, y, z);
+
+        SendClientMessage(targetid, -1, "Admin Teleported In Your Car");
+        return 1;
+    }
+
+
 }

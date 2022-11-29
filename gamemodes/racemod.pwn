@@ -1,9 +1,9 @@
 main() {}
 
-new score; 
-new round_time;
-new map_types;
-new kills;
+//new score; 
+//new round_time;
+//new map_types;
+//new kills;
 new PickupParachute;
 new PickupArmour;
 new PickupPills;
@@ -26,8 +26,14 @@ new color;
 // forward //
 forward SendMSG();
 
+//{
+	//print("\n----------------------------------");
+	//print(" Blank Gamemode by your name here");
+	//print("----------------------------------\n");
+//}
+
 new RandomMSG[5][500] =
-{   
+{
 	{"~ ~ [INFO]: Are You New Here? Check Out /rules /help."},
 	{"~ ~ [CRBot]: If You Break Any Server Rule, You Are Gay."},
 	{"~ ~ [CRBot]: Thanks for Playing On This Server,  Hope You're Enjoying."},
