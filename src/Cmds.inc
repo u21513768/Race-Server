@@ -17,12 +17,12 @@ CMD:tp(playerid, params[]) // teleport to player //
 
 CMD:v(playerid, params[]) // Need To Fix Not Spawning Bikes Which Has Numeric In Their Name Like : NRG-500, FCR-900 etc
 {
-    extract params -> new string:model[30]; else
+    extract params -> new string:model[30];
       return SendClientMessage(playerid, 0xFF66CCFF, "[USAGE]: /v [Car/Model]");
     
-    new modelId;
+    new modelId = 0;
     
-    if(!IsNumeric(model)) //why? 
+    if(isdigit(model) != 0)
         modelId = strval(model);
     else 
     {
@@ -35,11 +35,11 @@ CMD:v(playerid, params[]) // Need To Fix Not Spawning Bikes Which Has Numeric In
             }      
         }
 
-        if (!modelId)
+        if (modelId == 0)
             return SendClientMessage(playerid, 0xCCCC00, "[ERROR]: Invalid Vehicle Name");
     }
 
-    if(!(400 <= modelId <= 611))
+    if(400 > modelId || modelId > 611)
         return SendClientMessage(playerid, 0xCCCC00, "[ERROR]: Invalid Range Model ID");
 
     new 
