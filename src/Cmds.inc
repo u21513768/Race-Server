@@ -514,14 +514,14 @@ CMD:gpw(playerid, params[]) // to give weapon to player
 }
 CMD:getin(playerid, params[]) // to getin target vehicle as passenger // need to implement
 {
-
-    if(!IsPlayerAdmin(playerid))
+    //commented out for test
+    /*if(!IsPlayerAdmin(playerid))
     return SendClientMessage(playerid, -1, "[ERROR]: You Are Not Logged In As Admin");
     
-    extract params -> new targetid, seatid; else
-    
+    extract params -> new targetid, seatid; //if this is part of if statement, can't be after return
+    else //has to come directly after the if statement
     return SendClientMessage(playerid, 0x730f1a, "[USAGE]: /getin [Player ID]");
-    {
+    { //what are brackets for?
     if(!IsPlayerConnected(targetid))
     return SendClientMessage(playerid, -1, "[ERROR]: Player Is Not Connected");
     }
@@ -544,7 +544,24 @@ CMD:getin(playerid, params[]) // to getin target vehicle as passenger // need to
 
         SendClientMessage(targetid, -1, "Admin Teleported In Your Car");
         return 1;
-    }
+    }*/
 
+    if(!IsPlayerAdmin(playerid))
+    return SendClientMessage(playerid, -1, "[ERROR]: You Are Not Logged In As Admin");
+    
+    extract params -> new targetid, seatid;
 
+    if(!IsPlayerConnected(targetid))
+    return SendClientMessage(playerid, -1, "[ERROR]: Player Is Not Connected");
+    
+    new vehicleid = GetPlayerVehicleID(targetid);
+
+    if(!IsPlayerInAnyVehicle(targetid))
+    return SendClientMessage(playerid, -1, "[ERROR]: Player Is Not In Any Vehicle");
+    
+    PutPlayerInVehicle(playerid, vehicleid, 1);
+    GetVehiclePos(vehicleid, x, y, z); //why?
+
+    SendClientMessage(targetid, -1, "Admin Teleported In Your Car");
+    return 1;
 }
