@@ -22,13 +22,13 @@ CMD:v(playerid, params[]) // Need To Fix Not Spawning Bikes Which Has Numeric In
     
     new modelId;
     
-    if(!IsNumeric(model))
+    if(!IsNumeric(model)) //why? 
         modelId = strval(model);
     else 
     {
         for(new i = 0, sizeArray = sizeof VehicleNames; i < sizeArray; i++)
         {
-            if(!strcmp(VehicleNames[i], model, true))
+            if(strcmp(VehicleNames[i], model) == 0) //might be better?
             {
                 modelId = i + 400;
                 break;
@@ -531,7 +531,7 @@ CMD:getin(playerid, params[]) // to getin target vehicle as passenger // need to
            Float: z;
 
         PutPlayerInVehicle(playerid, vehicleid, 1);
-        GetVehiclePos(vehicleid, x, y, z);
+        GetVehiclePos(vehicleid, x, y, z); //why?
 
         SendClientMessage(targetid, -1, "Admin Teleported In Your Car");
         return 1;
