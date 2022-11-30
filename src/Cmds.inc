@@ -17,29 +17,29 @@ CMD:tp(playerid, params[]) // teleport to player //
 
 CMD:v(playerid, params[]) // Need To Fix Not Spawning Bikes Which Has Numeric In Their Name Like : NRG-500, FCR-900 etc
 {
-    extract params -> new string:model[30];else
-        return SendClientMessage(playerid, 0xFF66CCFF, "[USAGE]: /v [Car/Model]");
+    extract params -> new string:model[30]; else
+      return SendClientMessage(playerid, 0xFF66CCFF, "[USAGE]: /v [Car/Model]");
     
-    new modelId = 0;
+    new modelId;
     
-    if(IsNumeric(model) != 0)
+    if(!IsNumeric(model))
         modelId = strval(model);
     else 
     {
         for(new i = 0, sizeArray = sizeof VehicleNames; i < sizeArray; i++)
         {
-            if(strcmp(VehicleNames[i], model, false)) //might be better?
+            if(!strcmp(VehicleNames[i], model, true))
             {
                 modelId = i + 400;
                 break;
             }      
         }
 
-        if (modelId == 0)
+        if (!modelId)
             return SendClientMessage(playerid, 0xCCCC00, "[ERROR]: Invalid Vehicle Name");
     }
 
-    if(400 > modelId || modelId > 611)
+    if(!(400 <= modelId <= 611))
         return SendClientMessage(playerid, 0xCCCC00, "[ERROR]: Invalid Range Model ID");
 
     new 
@@ -52,7 +52,7 @@ CMD:v(playerid, params[]) // Need To Fix Not Spawning Bikes Which Has Numeric In
     GetPlayerFacingAngle(playerid, angle);
 
     new vehicleId = CreateVehicle(modelId, x, y, z, angle, 0, 0, -1);
-    PutPlayerInVehicle(playerid, vehicleId, 0);
+    PutPlayerInVehicle(playerid, vehicleId, 0); 
 
     return 1;
 }
