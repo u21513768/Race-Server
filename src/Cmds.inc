@@ -18,6 +18,7 @@ CMD:tp(playerid, params[]) // teleport to player //
 CMD:v(playerid, params[]) // Need To Fix Not Spawning Bikes Which Has Numeric In Their Name Like : NRG-500, FCR-900 etc
 {
     extract params -> new string:model[30];
+    else
       return SendClientMessage(playerid, 0xFF66CCFF, "[USAGE]: /v [Car/Model]");
     
     new modelId = 0;
@@ -205,10 +206,10 @@ CMD:changename(playerid, params[]) // to change your name
 CMD:admins(playerid) // needs to fix 
 {
     //return ShowPlayerDialog(playerid, DialogRules, DIALOG_STYLE_MSGBOX, "Online Admins", "", "Agree", ""); // Not finished yet
-    int OnlineAdmins[];
-    char AdminsTemp[] = "";
-    char Admins[] = "";
-    int counter = 0;
+    new OnlineAdmins[];
+    new AdminsTemp[];// = {'\0'}; initialise with empty string but not necessary
+    new Admins[];// = {'\0'}; initialise with empty string but not necessary
+    new counter = 0;
     for(int i = 0; i < numPlayers; i++) 
     {
         if(IsPlayerAdmin(i)) //checks which players are admins
@@ -533,7 +534,7 @@ CMD:gpw(playerid, params[]) // to give weapon to player
     
     return 1;
 }
-CMD:getin(playerid, userid params[]) // to getin target vehicle as passenger // need to implement
+CMD:getin(playerid, userid, params[]) // to getin target vehicle as passenger // need to implement
 {
     //commented out for test
     /*if(!IsPlayerAdmin(playerid))
