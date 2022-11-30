@@ -17,19 +17,22 @@ CMD:tp(playerid, params[]) // teleport to player //
 
 CMD:v(playerid, params[]) // Need To Fix Not Spawning Bikes Which Has Numeric In Their Name Like : NRG-500, FCR-900 etc
 {
-    extract params -> new string:model[30];
-    else
-      return SendClientMessage(playerid, 0xFF66CCFF, "[USAGE]: /v [Car/Model]");
+    extract params -> new string:model[30];else
+        return SendClientMessage(playerid, 0xFF66CCFF, "[USAGE]: /v [Car/Model]");
     
     new modelId = 0;
     
-    if(isdigit(model) != 0)
+    if(IsNumeric(model) != 0)
         modelId = strval(model);
     else 
     {
         for(new i = 0, sizeArray = sizeof VehicleNames; i < sizeArray; i++)
         {
+<<<<<<< Updated upstream
             if(strcmp(tolower(VehicleNames[i]), tolower(model)) == 0)
+=======
+            if(strcmp(VehicleNames[i], model, false)) //might be better?
+>>>>>>> Stashed changes
             {
                 modelId = i + 400;
                 break;
@@ -206,22 +209,23 @@ CMD:changename(playerid, params[]) // to change your name
 CMD:admins(playerid) // needs to fix 
 {
     //return ShowPlayerDialog(playerid, DialogRules, DIALOG_STYLE_MSGBOX, "Online Admins", "", "Agree", ""); // Not finished yet
-    new OnlineAdmins[];
-    new AdminsTemp[];// = {'\0'}; initialise with empty string but not necessary
-    new Admins[];// = {'\0'}; initialise with empty string but not necessary
-    new counter = 0;
-    for(int i = 0; i < numPlayers; i++) 
+    //new OnlineAdmins[2000];
+    new AdminsTemp[2000];// = {'\0'}; initialise with empty string but not necessary
+    new Admins[2000];// = {'\0'}; initialise with empty string but not necessary
+    new name[MAX_PLAYER_NAME + 1];
+    for(new i = 0; i < numPlayers; i++) //not sure how to get number of players
     {
         if(IsPlayerAdmin(i)) //checks which players are admins
         {
             //OnlineAdmins[counter] = i;
             //counter++;
-            strcat(Admins, GetPlayerName(i)); //adds the name of the admin to a list
-            strcat(Admins, ", "); //separates players by ", "
+            //can't get to work properly
+            strcat(AdminsTemp, GetPlayerName(i, name, sizeof(name))); //adds the name of the admin to a list
+            strcat(AdminsTemp, ", "); //separates players by ", "
         }
     }
 
-    for(int j = 0; j < strlen(AdminsTemp)-2; j++) //removes ", " from the end of the string
+    for(new j = 0; j < strlen(AdminsTemp)-2; j++) //removes ", " from the end of the string
     {
         Admins[j] = AdminsTemp[j];
     }
@@ -286,7 +290,7 @@ CMD:s(playerid, params[]) // not working well
 {
     
     //new vehicleid = GetPlayerVehicleID(playerid); //what if not in vehicle? might need to nest in if statement
-    int vehicleid;
+    new vehicleid;
     new 
         Float: x,
         Float: y,
@@ -301,7 +305,7 @@ CMD:s(playerid, params[]) // not working well
     }
     else //set player in position without vehicle
     {
-        GetPlayerPos
+        //GetPlayerPos()
     }
     return 1;
 }
